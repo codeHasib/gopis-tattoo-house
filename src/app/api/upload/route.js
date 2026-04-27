@@ -1,4 +1,10 @@
-import cloudinary from "@/lib/cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function POST(req) {
   try {
@@ -6,36 +12,37 @@ export async function POST(req) {
     const file = formData.get("file");
 
     if (!file) {
-      return Response.json({ error: "No file provided" }, { status: 400 });
+      return Response.json({
+        success: false,
+        message: "No file uploaded",
+      });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
 
     const result = await new Promise((resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream(
-          {
-            folder: "tattoo-house",
-          },
-          (error, result) => {
-            if (error) reject(error);
-            else resolve(result);
-          },
-        )
-        .end(buffer);
+      cloudinary.uploader.upload_stream(
+        {
+          resource_type: "auto", // 🔥 IMPORTANT (THIS FIXES VIDEO)
+        },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      ).end(buffer);
     });
 
     return Response.json({
       success: true,
       url: result.secure_url,
+      type: result.resource_type, // image or video
     });
-  } catch (error) {
-    return Response.json(
-      {
-        success: false,
-        error: error.message,
-      },
-      { status: 500 },
-    );
+
+  } catch (err) {
+    return Response.json({
+      success: false,
+      message: err.message,
+    });
   }
 }

@@ -1,5 +1,5 @@
 export default async function BlogPage() {
-  const res = await fetch(`${process.env.BASE_URI}/api/member`, {
+  const res = await fetch(`${process.env.BASE_URI}/api/blog`, {
     cache: "no-store",
   });
 

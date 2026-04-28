@@ -1,5 +1,5 @@
 export default async function ArtistsPage() {
-  const res = await fetch(`${process.env.BASE_URI}/api/member`, {
+  const res = await fetch(`${process.env.BASE_URI}/api/artist`, {
     cache: "no-store",
   });
 
@@ -8,19 +8,24 @@ export default async function ArtistsPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4">
+
       {/* HEADER */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold">🎨 Our Artists</h1>
-        <p className="text-gray-600 mt-2">Meet the people behind the ink</p>
+        <p className="text-gray-600 mt-2">
+          Meet the people behind the ink
+        </p>
       </div>
 
       {/* GRID */}
       <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
         {artists.map((artist) => (
           <div
             key={artist._id}
             className="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition"
           >
+
             {/* IMAGE */}
             <div className="h-60 overflow-hidden bg-black">
               <img
@@ -32,14 +37,20 @@ export default async function ArtistsPage() {
 
             {/* CONTENT */}
             <div className="p-4 text-center">
-              <h2 className="text-xl font-bold">{artist.name}</h2>
+
+              <h2 className="text-xl font-bold">
+                {artist.name}
+              </h2>
 
               <p className="text-gray-600 text-sm mt-2 line-clamp-3">
                 {artist.description}
               </p>
+
             </div>
+
           </div>
         ))}
+
       </div>
 
       {/* EMPTY STATE */}
@@ -48,6 +59,7 @@ export default async function ArtistsPage() {
           No artists added yet.
         </div>
       )}
+
     </div>
   );
 }

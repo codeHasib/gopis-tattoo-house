@@ -1,4 +1,7 @@
 import { getTattoos } from "@/actions/tattoo";
+import Image from "next/image";
+
+export const dynamic = "force-dynamic";
 
 export default async function TattooGalleryPage() {
   const res = await getTattoos();
@@ -22,9 +25,11 @@ export default async function TattooGalleryPage() {
             >
               {/* Image */}
               <div className="h-64 bg-gray-100">
-                <img
+                <Image
                   src={tattoo.mediaUrl}
                   alt={tattoo.title}
+                  height={100}
+                  width={100}
                   className="w-full h-full object-cover"
                 />
               </div>

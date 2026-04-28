@@ -1,5 +1,5 @@
 export default async function BlogPage() {
-  const res = await fetch("http://localhost:3000/api/blog", {
+  const res = await fetch(`${process.env.BASE_URI}/api/member`, {
     cache: "no-store",
   });
 
@@ -13,28 +13,22 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-
       {/* HEADER */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold">📝 Tattoo Blog</h1>
-        <p className="text-gray-600 mt-2">
-          Stories, designs & tattoo updates
-        </p>
+        <p className="text-gray-600 mt-2">Stories, designs & tattoo updates</p>
       </div>
 
       {/* GRID */}
       <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-
         {blogs.map((blog) => (
           <div
             key={blog._id}
             className="bg-white rounded-xl shadow overflow-hidden"
           >
-
             {/* MEDIA (IMAGE OR VIDEO) */}
             {blog.mediaUrl && (
               <div className="h-52 bg-black">
-
                 {isVideo(blog.mediaUrl) ? (
                   <video
                     src={blog.mediaUrl}
@@ -48,26 +42,19 @@ export default async function BlogPage() {
                     className="w-full h-full object-cover hover:scale-105 transition"
                   />
                 )}
-
               </div>
             )}
 
             {/* CONTENT */}
             <div className="p-4">
-
-              <h2 className="text-xl font-bold mb-2">
-                {blog.title}
-              </h2>
+              <h2 className="text-xl font-bold mb-2">{blog.title}</h2>
 
               <p className="text-gray-600 text-sm line-clamp-3">
                 {blog.description}
               </p>
-
             </div>
-
           </div>
         ))}
-
       </div>
 
       {/* EMPTY STATE */}
@@ -76,7 +63,6 @@ export default async function BlogPage() {
           No blogs available yet.
         </div>
       )}
-
     </div>
   );
 }

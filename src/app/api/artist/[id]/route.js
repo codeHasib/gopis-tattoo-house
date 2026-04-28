@@ -1,5 +1,7 @@
 import { updateArtist, deleteArtist } from "@/actions/artist";
 
+export const dynamic = "force-dynamic";
+
 // UPDATE
 export async function PUT(req, { params }) {
   const { id } = await params;

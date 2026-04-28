@@ -1,5 +1,7 @@
 import { updateMember, deleteMember } from "@/actions/member";
 
+export const dynamic = "force-dynamic";
+
 export async function PUT(req, { params }) {
   const { id } = await params;
   const body = await req.json();

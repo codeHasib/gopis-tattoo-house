@@ -1,5 +1,7 @@
 import { addBlog, getBlogs } from "@/actions/blog";
 
+export const dynamic = "force-dynamic";
+
 // CREATE
 export async function POST(req) {
   const body = await req.json();

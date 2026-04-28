@@ -1,6 +1,8 @@
 import { connectDB } from "@/lib/db";
 import { toObjectId } from "@/models/tattoo.model";
 
+export const dynamic = "force-dynamic";
+
 // ❌ DELETE
 export async function DELETE(req, { params }) {
   try {

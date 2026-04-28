@@ -178,7 +178,7 @@ export default function BlogClient() {
 
               <button 
                 disabled={loading}
-                className="w-full h-16 bg-white text-black font-black uppercase italic rounded-2xl hover:bg-zinc-200 transition-all flex items-center justify-center gap-3"
+                className="w-full h-16 bg-white text-black font-black uppercase italic rounded-2xl hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 mt-5"
               >
                 {loading ? <Loader2 className="animate-spin" size={24} /> : "Publish Story"}
               </button>

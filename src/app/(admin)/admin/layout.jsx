@@ -1,21 +1,16 @@
-import { Playfair_Display } from "next/font/google";
 import "../../globals.css";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400", "700", "900"],
-});
 
 export const metadata = {
   title: "Gopis Tattoo House - Admin Login Page",
   description: "Admin page for managing the data",
 };
 
-export default function RootLayout({ children }) {
+export default function AdminLayout({ children }) {
   return (
-    <html lang="en" className={`${playfair.variable} h-full antialiased`}>
-      <body>{children}</body>
-    </html>
+    <>
+      <section className="antialiased">
+        {children}
+        </section>
+    </>
   );
 }

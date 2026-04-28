@@ -114,28 +114,28 @@ export default function DashboardClient() {
       label: "Total Tattoos",
       value: tattoos.length,
       icon: PlusCircle,
-      trend: "+12",
+      trend: `${tattoos.length}+`,
       delay: 0.1,
     },
     {
       label: "Total Artists",
       value: artists.length,
       icon: Paintbrush,
-      trend: "+1",
+      trend: `${artists.length}+`,
       delay: 0.2,
     },
     {
       label: "Total Members",
       value: members.length,
       icon: Users,
-      trend: "+84",
+      trend: `${members.length}+`,
       delay: 0.3,
     },
     {
       label: "Total Reviews",
       value: reviews.length,
       icon: Star,
-      trend: "+6",
+      trend: `${reviews.length}+`,
       delay: 0.4,
     },
   ];
@@ -251,7 +251,7 @@ export default function DashboardClient() {
           <p className="text-zinc-500 text-sm mt-2 mb-6">
             Manage your crew and update their portfolio galleries.
           </p>
-          <Link href={"/admin/m"}>
+          <Link href={"/admin/members"}>
             <button className="w-full py-3 bg-zinc-100 text-black font-bold rounded-xl hover:bg-white transition-all">
               Manage Crew
             </button>

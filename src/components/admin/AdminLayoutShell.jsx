@@ -7,11 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Logo from "../../../public/icon.png";
 import { authClient } from "@/lib/auth-client";
+import { Loader2 } from "lucide-react"; // Added for the loading state
 
 import {
   LayoutDashboard,
   Paintbrush,
-  Users,
   UserPlus,
   Star,
   PlusCircle,
@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 
 // --- Sub-Component: Navigation Item ---
-const NavItem = ({ href, icon: Icon, label, isOpen, onClick }) => {
+const NavItem = ({ href, icon: Icon, label, isOpen, onClick, disabled }) => {
   const pathname = usePathname();
   const isActive = href ? pathname === href : false;
 
@@ -51,14 +51,14 @@ const NavItem = ({ href, icon: Icon, label, isOpen, onClick }) => {
     </>
   );
 
-  // If it's a specific action like Log-out (no href)
   if (!href && onClick) {
     return (
       <motion.button
-        whileHover={{ x: 5 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={disabled ? {} : { x: 5 }}
+        whileTap={disabled ? {} : { scale: 0.95 }}
         onClick={onClick}
-        className={`${baseStyles} ${activeStyles}`}
+        disabled={disabled}
+        className={`${baseStyles} ${activeStyles} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
         type="button"
       >
         {content}
@@ -66,13 +66,12 @@ const NavItem = ({ href, icon: Icon, label, isOpen, onClick }) => {
     );
   }
 
-  // Normal Navigation Link
   return (
-    <Link href={href || "#"} onClick={onClick} className="block w-full">
+    <Link href={disabled ? "#" : (href || "#")} onClick={disabled ? (e) => e.preventDefault() : onClick} className="block w-full">
       <motion.div
-        whileHover={{ x: 5 }}
-        whileTap={{ scale: 0.95 }}
-        className={`${baseStyles} ${activeStyles}`}
+        whileHover={disabled ? {} : { x: 5 }}
+        whileTap={disabled ? {} : { scale: 0.95 }}
+        className={`${baseStyles} ${activeStyles} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       >
         {content}
       </motion.div>
@@ -83,13 +82,16 @@ const NavItem = ({ href, icon: Icon, label, isOpen, onClick }) => {
 export default function AdminLayoutShell({ children }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false); // New State
 
   async function logout() {
+    setIsLoggingOut(true); // Trigger loading screen
     try {
       await authClient.signOut();
       window.location.href = "/admin/login";
     } catch (error) {
       console.error("Logout failed:", error);
+      setIsLoggingOut(false); // Reset if it fails
     }
   }
 
@@ -107,6 +109,35 @@ export default function AdminLayoutShell({ children }) {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white flex">
+      {/* LOGOUT OVERLAY */}
+      <AnimatePresence>
+        {isLoggingOut && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex flex-col items-center justify-center"
+          >
+            <div className="flex flex-col items-center gap-6">
+              <div className="relative">
+                 <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    className="w-16 h-16 border-t-2 border-r-2 border-white rounded-full"
+                 />
+                 <div className="absolute inset-0 flex items-center justify-center">
+                    <LogOut size={24} className="text-white" />
+                 </div>
+              </div>
+              <div className="text-center">
+                <h2 className="text-white font-black uppercase italic tracking-widest text-lg">Terminating Session</h2>
+                <p className="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mt-2 font-bold">Securely logging out of Gopis Tattoo House</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* 1. Desktop Sidebar */}
       <motion.aside
         animate={{ width: isOpen ? 280 : 85 }}
@@ -129,12 +160,13 @@ export default function AdminLayoutShell({ children }) {
 
         <nav className="flex-1 overflow-y-auto no-scrollbar">
           {navigation.map((item, index) => (
-            <NavItem key={index} {...item} isOpen={isOpen} />
+            <NavItem key={index} {...item} isOpen={isOpen} disabled={isLoggingOut} />
           ))}
         </nav>
 
         <button
           onClick={() => setIsOpen(!isOpen)}
+          disabled={isLoggingOut}
           className="mt-auto p-3 text-zinc-500 hover:text-white transition-colors flex items-center border-t border-zinc-900 pt-5"
         >
           <Menu size={20} />
@@ -152,6 +184,7 @@ export default function AdminLayoutShell({ children }) {
         </div>
         <button
           onClick={() => setIsMobileOpen(!isMobileOpen)}
+          disabled={isLoggingOut}
           className="p-2 bg-zinc-900 rounded-lg text-zinc-400"
         >
           {isMobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -162,7 +195,6 @@ export default function AdminLayoutShell({ children }) {
       <AnimatePresence>
         {isMobileOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -170,7 +202,6 @@ export default function AdminLayoutShell({ children }) {
               onClick={closeMobile}
               className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[65] md:hidden"
             />
-            {/* Sidebar */}
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
@@ -178,13 +209,14 @@ export default function AdminLayoutShell({ children }) {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed inset-y-0 left-0 w-[280px] bg-black z-[70] p-6 shadow-2xl border-r border-zinc-800 flex flex-col md:hidden"
             >
-              <div className="mb-10 text-xl font-bold tracking-tighter italic uppercase">Navigation</div>
+              <div className="mb-10 text-xl font-bold tracking-tighter italic uppercase text-white">Navigation</div>
               <div className="flex-1">
                 {navigation.map((item, index) => (
                   <NavItem
                     key={index}
                     {...item}
                     isOpen={true}
+                    disabled={isLoggingOut}
                     onClick={() => {
                       if (item.onClick) item.onClick();
                       closeMobile();
@@ -198,7 +230,7 @@ export default function AdminLayoutShell({ children }) {
       </AnimatePresence>
 
       {/* 4. Main Dynamic Content Area */}
-      <main className="flex-1 flex flex-col min-w-0">
+      <main className={`flex-1 flex flex-col min-w-0 transition-all duration-500 ${isLoggingOut ? 'blur-sm grayscale opacity-50' : ''}`}>
         <div className="p-6 md:p-10 pt-28 md:pt-10 max-w-[1600px] w-full mx-auto">
           {children}
         </div>

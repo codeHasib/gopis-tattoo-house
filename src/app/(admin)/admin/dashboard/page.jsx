@@ -1,5 +1,11 @@
+import DashboardClient from "@/components/admin/DashboardClient";
+
 const DashboardPage = () => {
-  return <div>This is dashboard</div>;
+  return (
+    <div>
+      <DashboardClient></DashboardClient>
+    </div>
+  );
 };
 
 export default DashboardPage;

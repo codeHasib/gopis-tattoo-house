@@ -69,7 +69,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="max-w-xl text-zinc-500 text-[13px] md:text-[15px] leading-relaxed mt-6 mb-10 font-normal tracking-wide uppercase"
+          className="max-w-xl text-gray-200 text-[13px] md:text-[15px] leading-relaxed mt-6 mb-10 font-normal tracking-wide uppercase"
         >
           Where art meets skin. We specialize in custom ink, precision
           blackwork, and high-end tattoo artistry designed to last a lifetime.
@@ -89,7 +89,7 @@ export default function Hero() {
 
       {/* 3. Bottom Services Ticker */}
       <div className="absolute bottom-0 w-full bg-zinc-950/50 backdrop-blur-sm border-t border-zinc-900 py-8 overflow-hidden">
-        {/* The "Track" that moves */}
+        {/* The "Track" - Must be flex and max-content */}
         <div className="flex w-max animate-infinite-scroll">
           {/* First Set of Items */}
           <div className="flex items-center gap-16 px-8">
@@ -99,15 +99,25 @@ export default function Hero() {
             <ServiceItem text="Realism" />
           </div>
 
-          {/* Exact Duplicate for Seamless Looping */}
+          {/* Exact Duplicate - This is what creates the loop */}
           <div className="flex items-center gap-16 px-8">
             <ServiceItem text="Custom Design" />
             <ServiceItem text="Black & Gray" />
             <ServiceItem text="Minimalist" />
             <ServiceItem text="Realism" />
           </div>
-
-          {/* Exact Duplicate for Seamless Looping */}
+          <div className="flex items-center gap-16 px-8">
+            <ServiceItem text="Custom Design" />
+            <ServiceItem text="Black & Gray" />
+            <ServiceItem text="Minimalist" />
+            <ServiceItem text="Realism" />
+          </div>
+          <div className="flex items-center gap-16 px-8">
+            <ServiceItem text="Custom Design" />
+            <ServiceItem text="Black & Gray" />
+            <ServiceItem text="Minimalist" />
+            <ServiceItem text="Realism" />
+          </div>
           <div className="flex items-center gap-16 px-8">
             <ServiceItem text="Custom Design" />
             <ServiceItem text="Black & Gray" />

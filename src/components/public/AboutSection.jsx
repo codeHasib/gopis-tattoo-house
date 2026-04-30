@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import MyselfImg from "../../../public/images/myself.jpg";
+import SignImg from "../../../public/images/sign.png";
 
 export default function AboutSection() {
   return (
@@ -54,13 +55,19 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[#E11D5C] font-bold uppercase tracking-[0.4em] text-xs">
-                The Visionary
-              </span>
               <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mt-4 leading-none text-black">
-                Crafting <br />
-                <span className="text-zinc-300">Eternal</span> Ink
+                Dip das <br />
               </h2>
+              <span className="text-gray-700 ml-2 font-bold uppercase tracking-[0.4em] text-xs">
+                Founder of
+              </span>
+              <span className="text-[#E11D5C] text-5xl md:text-7xl font-bold block">
+                GOPIS
+                <br />
+              </span>{" "}
+              <span className="text-black text-5xl md:text-7xl font-bold">
+                TATTOO STUDIO
+              </span>
             </motion.div>
 
             <motion.p
@@ -82,23 +89,19 @@ export default function AboutSection() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="grid grid-cols-2 gap-8 border-y border-zinc-100 py-8"
+              className="border-y border-zinc-100 py-8"
             >
-              <div>
-                <h4 className="font-black uppercase text-xs tracking-widest text-black">
-                  Custom Design
-                </h4>
-                <p className="text-zinc-400 text-xs mt-2 uppercase font-semibold">
-                  Unique to your story
-                </p>
+              <div className="flex justify-center items-center">
+                <Image
+                  src={SignImg}
+                  width={70}
+                  className="filter"
+                  alt="Sign Image"
+                  height={50}
+                ></Image>
               </div>
               <div>
-                <h4 className="font-black uppercase text-xs tracking-widest text-black">
-                  Sterile Environment
-                </h4>
-                <p className="text-zinc-400 text-xs mt-2 uppercase font-semibold">
-                  Medical grade safety
-                </p>
+                <h3 className="pt-2 mx-10 border-t text-center">AUTHOR</h3>
               </div>
             </motion.div>
 

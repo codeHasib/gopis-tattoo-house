@@ -1,93 +1,28 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import BannerImg from "../../../public/images/banner.jpg";
 
 export default function ArtistsSection() {
-  const [artists, setArtists] = useState([]);
-
-  useEffect(() => {
-    async function loadArtist() {
-      try {
-        const res = await fetch("/api/artist", {
-          cache: "no-store",
-        });
-        const contentType = res.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          const text = await res.text();
-          console.error(
-            "Received HTML instead of JSON. Look at this output to see what page it is:",
-            text.substring(0, 200),
-          );
-          return;
-        }
-
-        const data = await res.json();
-        const allData = data?.data.slice(0, 6);
-        setArtists(allData);
-      } catch (error) {
-        console.error("Fetch error:", error);
-      }
-    }
-
-    loadArtist();
-  }, [artists]);
-
-  const scrollRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  // Logic: Check scroll progress to show/hide arrows
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      // Small 1px buffer for scrollWidth calculation
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
-    }
+  // Static configuration for the high-impact featured image
+  const featuredArtist = {
+    name: "The Collective",
+    specialty: "Master Artists & Elite Craft",
+    // Replace this with your actual high-quality portrait or studio shot
+    imageUrl: BannerImg,
   };
-
-  // Add scroll listener on mount
-  useEffect(() => {
-    checkScroll();
-    const currentRef = scrollRef.current;
-    if (currentRef) {
-      currentRef.addEventListener("scroll", checkScroll);
-    }
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener("scroll", checkScroll);
-      }
-    };
-  }, [artists]); // Rerun check when artists data loads
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const { clientWidth } = scrollRef.current;
-      const scrollAmount = direction === "left" ? -clientWidth : clientWidth;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
-  if (artists.length === 0) {
-    return (
-      <section className="bg-black py-24 px-6 text-center text-zinc-700 uppercase font-black tracking-widest border-y border-zinc-900">
-        Loading The Collective...
-      </section>
-    );
-  }
 
   return (
-    <section className="bg-black py-24 px-0 relative group/section">
-      {/* 1. SECTION HEADER AREA */}
-      <div className="max-w-[1400px] mx-auto px-6 mb-16 flex flex-col md:flex-row justify-between items-end gap-6 relative z-10">
+    <section className="bg-black py-24 px-6 relative group/section">
+      {/* 1. SECTION HEADER */}
+      <div className="max-w-[1400px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-end gap-6 relative z-10">
         <div>
           <span className="text-[#E11D5C] font-bold uppercase tracking-[0.4em] text-xs">
-            The Collective
+            Elite Craft
           </span>
           <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mt-4 text-white leading-[0.85]">
-            Elite <br /> Tattooists
+            Meet Your <br /> Master
           </h2>
         </div>
         <p className="text-zinc-500 font-bold uppercase text-[11px] tracking-[0.2em] max-w-xs md:text-right">
@@ -96,78 +31,49 @@ export default function ArtistsSection() {
         </p>
       </div>
 
-      {/* 2. THE CAROUSEL CONTAINER */}
-      <div className="relative">
-        {/* SCROLLABLE TRACK */}
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-0 cursor-grab active:cursor-grabbing"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      {/* 2. THE SINGLE STATIC HERO IMAGE */}
+      <div className="max-w-[1400px] mx-auto relative group overflow-hidden border border-zinc-900">
+        <Link
+          href="/artists"
+          className="relative block aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden"
         >
-          {artists.map((artist) => (
-            <Link
-              key={artist._id}
-              href={`/artists/${artist._id}`}
-              className="relative flex-none w-full md:w-1/2 lg:w-1/3 snap-start group aspect-[3/4] overflow-hidden border-r border-zinc-900 last:border-r-0"
-            >
-              {/* IMAGE (Rectangle, grayscale to color) */}
-              <Image
-                src={artist.imageUrl || artist.mediaUrl}
-                alt={artist.name}
-                fill
-                priority
-                sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-all duration-1000"
-              />
+          {/* Main Feature Image */}
+          <Image
+            src={featuredArtist.imageUrl}
+            alt="Elite Artists"
+            fill
+            priority
+            className="object-cover group-hover:scale-105 transition-all duration-1000"
+          />
 
-              {/* GRADIENT OVERLAY (Required for readability) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80" />
+          {/* Heavy Gradient for Mobile Readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
 
-              {/* Minimal Text Overlay (Similar to image_1.png) */}
-              <div className="absolute bottom-10 left-10 right-10 flex items-center justify-between">
-                <div>
-                  <h3 className="text-3xl font-black uppercase tracking-tighter text-white mb-2 leading-none">
-                    {artist.name}
-                  </h3>
-                  <span className="text-[#E11D5C] font-black uppercase tracking-[0.3em] text-[10px]">
-                    {artist.specialty || "Resident Artist"}
-                  </span>
-                </div>
-                <ChevronRight
-                  size={24}
-                  className="text-white group-hover:translate-x-1 group-hover:text-[#E11D5C] transition-all"
-                />
-              </div>
-            </Link>
-          ))}
-        </div>
+          {/* Text Overlay */}
+          <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-2">
+                {featuredArtist.name}
+              </h3>
+              <span className="text-[#E11D5C] font-black uppercase tracking-[0.3em] text-xs md:text-sm">
+                {featuredArtist.specialty}
+              </span>
+            </div>
 
-        {/* 3. NAVIGATION ARROWS (Placed ON THE PHOTO, only visible on hover) */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-8 flex justify-between pointer-events-none z-20">
-          {/* Previous Button */}
-          <button
-            onClick={() => scroll("left")}
-            disabled={!canScrollLeft}
-            aria-label="Previous Artist"
-            className={`w-16 h-16 rounded-full bg-black/60 text-white flex items-center justify-center border border-zinc-700 pointer-events-auto backdrop-blur-sm transition-all duration-300
-              ${canScrollLeft ? "opacity-0 group-hover/section:opacity-100" : "opacity-0"} 
-              hover:bg-[#E11D5C] hover:border-[#E11D5C]`}
-          >
-            <ChevronLeft size={30} />
-          </button>
+            {/* CTA Button */}
+            <div className="flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full font-black uppercase tracking-widest text-[11px] self-start md:self-center group-hover:bg-[#E11D5C] group-hover:text-white transition-colors">
+              View All Artists
+              <ChevronRight size={18} />
+            </div>
+          </div>
+        </Link>
+      </div>
 
-          {/* Next Button */}
-          <button
-            onClick={() => scroll("right")}
-            disabled={!canScrollRight}
-            aria-label="Next Artist"
-            className={`w-16 h-16 rounded-full bg-black/60 text-white flex items-center justify-center border border-zinc-700 pointer-events-auto backdrop-blur-sm transition-all duration-300
-              ${canScrollRight ? "opacity-0 group-hover/section:opacity-100" : "opacity-0"}
-              hover:bg-[#E11D5C] hover:border-[#E11D5C]`}
-          >
-            <ChevronRight size={30} />
-          </button>
-        </div>
+      {/* Background Decorative Element */}
+      <div className="absolute top-0 right-0 p-24 opacity-[0.02] pointer-events-none select-none">
+        <span className="text-[15rem] font-black uppercase tracking-tighter text-white">
+          Ink
+        </span>
       </div>
     </section>
   );

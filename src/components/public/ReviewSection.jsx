@@ -7,9 +7,11 @@ import { Star, Quote } from "lucide-react";
 export default function ReviewSection() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false); // Step 1: Track mount state
   const containerRef = useRef(null);
 
   useEffect(() => {
+    setMounted(true); // Step 2: Set mounted to true on client
     async function fetchData() {
       try {
         const res = await fetch("/api/review");
@@ -24,27 +26,30 @@ export default function ReviewSection() {
     fetchData();
   }, []);
 
-  // Parallex effect for the background text
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
   const xTransform = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section ref={containerRef} className="bg-black py-32 overflow-hidden relative">
-      {/* BACKGROUND DECORATIVE TEXT */}
-      <motion.div 
-        style={{ x: xTransform }}
-        className="absolute top-1/2 -translate-y-1/2 left-0 whitespace-nowrap opacity-[0.03] pointer-events-none select-none"
-      >
-        <span className="text-[20rem] font-black uppercase tracking-tighter text-white">
-          Authentic Inked Authentic Inked
-        </span>
-      </motion.div>
+    <section
+      ref={containerRef}
+      className="bg-black py-32 overflow-hidden relative"
+    >
+      {/* BACKGROUND DECORATIVE TEXT - Wrapped in mounted check to sync motion values */}
+      {mounted && (
+        <motion.div
+          style={{ x: xTransform }}
+          className="absolute top-1/2 -translate-y-1/2 left-0 whitespace-nowrap opacity-[0.03] pointer-events-none select-none"
+        >
+          <span className="text-[20rem] font-black uppercase tracking-tighter text-white">
+            Authentic Inked Authentic Inked
+          </span>
+        </motion.div>
+      )}
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
@@ -54,39 +59,43 @@ export default function ReviewSection() {
               </span>
             </div>
             <h2 className="text-7xl md:text-9xl font-black uppercase tracking-tighter text-white leading-[0.8]">
-              The <br /> <span className="text-outline text-transparent">Bloodline</span>
+              The <br />{" "}
+              <span className="text-outline text-transparent">Bloodline</span>
             </h2>
           </div>
           <div className="text-right">
-             <p className="text-zinc-500 font-bold uppercase text-[11px] tracking-[0.3em] max-w-[200px] leading-relaxed">
-               Every mark tells a story. Every client leaves a legacy.
-             </p>
+            <p className="text-zinc-500 font-bold uppercase text-[11px] tracking-[0.3em] max-w-[200px] leading-relaxed">
+              Every mark tells a story. Every client leaves a legacy.
+            </p>
           </div>
         </div>
 
         {loading ? (
           <div className="flex gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="min-w-[400px] h-64 bg-zinc-900 animate-pulse border border-zinc-800" />
+              <div
+                key={i}
+                className="min-w-[400px] h-64 bg-zinc-900 animate-pulse border border-zinc-800"
+              />
             ))}
           </div>
         ) : (
           <div className="relative">
-            {/* INFINITE MARQUEE EFFECT */}
             <div className="flex overflow-hidden group">
-              <motion.div 
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-                className="flex gap-6 whitespace-nowrap py-10"
-              >
-                {/* Double the array for seamless looping */}
-                {[...reviews, ...reviews].map((review, index) => (
-                  <ReviewCard key={index} review={review} />
-                ))}
-              </motion.div>
+              {/* Step 3: Only render the motion track once mounted to avoid array mismatch */}
+              {mounted && (
+                <motion.div
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{ ease: "linear", duration: 40, repeat: Infinity }}
+                  className="flex gap-6 whitespace-nowrap py-10"
+                >
+                  {[...reviews, ...reviews].map((review, index) => (
+                    <ReviewCard key={`${review._id || index}-${index}`} review={review} />
+                  ))}
+                </motion.div>
+              )}
             </div>
-            
-            {/* Gradient Fades for Slider Edge */}
+
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
           </div>
@@ -101,7 +110,7 @@ export default function ReviewSection() {
 
       <style jsx>{`
         .text-outline {
-          -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
         }
       `}</style>
     </section>
@@ -113,28 +122,29 @@ function ReviewCard({ review }) {
 
   return (
     <div className="w-[350px] md:w-[450px] flex-shrink-0 bg-zinc-900/50 backdrop-blur-sm p-10 border border-zinc-800 hover:border-[#E11D5C] transition-all duration-500 relative group">
-      {/* Decorative Quote Icon */}
-      <Quote className="absolute top-6 right-6 text-zinc-800 group-hover:text-[#E11D5C]/20 transition-colors" size={40} />
-      
-      {/* Stars */}
+      <Quote
+        className="absolute top-6 right-6 text-zinc-800 group-hover:text-[#E11D5C]/20 transition-colors"
+        size={40}
+      />
+
       <div className="flex gap-1 mb-8">
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
             size={12}
             className={`${
-              i < (star || 5) ? "fill-[#E11D5C] text-[#E11D5C]" : "text-zinc-800"
+              i < (star || 5)
+                ? "fill-[#E11D5C] text-[#E11D5C]"
+                : "text-zinc-800"
             }`}
           />
         ))}
       </div>
 
-      {/* Message */}
       <p className="text-white font-bold leading-relaxed mb-10 whitespace-normal text-lg uppercase tracking-tight italic">
         &quot;{message}&quot;
       </p>
 
-      {/* Profile */}
       <div className="flex items-center gap-5">
         <div className="relative">
           <div className="w-14 h-14 bg-[#E11D5C] absolute -inset-1 opacity-20 blur-sm group-hover:opacity-40 transition-opacity" />
@@ -152,7 +162,6 @@ function ReviewCard({ review }) {
         </div>
       </div>
 
-      {/* Hover Line Detail */}
       <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#E11D5C] group-hover:w-full transition-all duration-700" />
     </div>
   );

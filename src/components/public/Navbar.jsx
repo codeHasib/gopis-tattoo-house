@@ -14,7 +14,7 @@ export default function Navbar() {
 
   const leftNav = [
     { name: "Home", href: "/" },
-    { name: "TATTOOS", href: "/tattoos" },
+    { name: "Our Works", href: "/works" },
     { name: "ARTISTS", href: "/artists" },
     { name: "Members", href: "/members" },
     { name: "Blogs", href: "/blogs" },
@@ -22,9 +22,9 @@ export default function Navbar() {
   ];
 
   const rightNav = [
-    { name: "About me", href: "/aboutme" },
-    { name: "Locate us", href: "/locate" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Founder", href: "/founder" },
+    { name: "Locate  us", href: "/locate" },
+    { name: "Contact  Us", href: "/contact" },
     { name: "Courses", href: "/courses" },
   ];
 
@@ -42,8 +42,8 @@ export default function Navbar() {
       <nav className="fixed top-0 w-full bg-black backdrop-blur-xl py-4 md:py-6 border-b border-zinc-900/50 z-90">
         <div className="container mx-auto px-6 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] md:gap-6">
           {/* --- MOBILE LOGO / DESKTOP HIDDEN --- */}
-          <Link href="/" className="flex flex-col items-center gap-2 lg:hidden">
-            <div className="relative w-8 h-8">
+          <Link href="/" className="flex items-center gap-2 lg:hidden">
+            <div className="relative w-10 h-10 p-3 bg-white rounded-full">
               <Image
                 src={Logo}
                 alt="Logo"
@@ -52,7 +52,8 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-black uppercase text-[10px] tracking-wide text-white block">
+            <span className="font-black uppercase font-serif text-[20px] tracking-wide text-white block">
+              {" "}
               Gopis Tattoo Studio
             </span>
           </Link>
@@ -99,7 +100,7 @@ export default function Navbar() {
             {rightNav.map((link) => (
               <Link key={link.name} href={link.href}>
                 <span
-                  className={`text-[13px] uppercase font-semibold tracking-wider transition-colors duration-300 ${getLinkStyles(link.href)}`}
+                  className={`text-[13px] uppercase tracking-wider transition-colors duration-300 ${getLinkStyles(link.href)}`}
                 >
                   {link.name}
                 </span>

@@ -99,7 +99,8 @@ export default function SplashScreen({ finishLoading }) {
                 isExpanding ? "text-black" : "text-white"
               }`}
             >
-              Gopis Tattoo
+              <span className="text-[#E11D5C]">Gopis</span>
+              Tattoo
             </motion.h1>
           </div>
 
@@ -134,7 +135,7 @@ export default function SplashScreen({ finishLoading }) {
               isExpanding ? "text-zinc-600" : "text-zinc-500"
             }`}
           >
-            Since 2026
+            Since 2017
           </motion.p>
         </div>
       </div>

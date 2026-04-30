@@ -8,7 +8,7 @@ import "../../../src/app/globals.css";
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
-  const words = ["STUDIO", "ARTISTS", "HOUSE", "LEGACY"];
+  const words = ["GOPIS", "TATTOO", "STUDIO"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,8 +36,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-white font-bold uppercase tracking-[0.4em] text-lg md:text-xl mb-4"
+          style={{ fontVariantNumeric: "lining-nums" }} // This fixes the messy heights
         >
-          The Best
+          EST. 2017
         </motion.span>
 
         {/* BIG ANIMATED TEXT - Clean Upright Block Font */}
@@ -51,11 +52,17 @@ export default function Hero() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-[70px] md:text-[180px] font-black leading-none uppercase tracking-tighter"
               style={{
-                backgroundImage: `url('https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&q=80&w=1000')`,
+                // Conditional Logic: If word is GOPIS, use flat color. Otherwise, use image clip.
+                backgroundImage:
+                  words[index] === "GOPIS"
+                    ? "none"
+                    : `url('https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&q=80&w=1000')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                // If GOPIS, use your hex color. Otherwise, keep it transparent for the clip.
+                WebkitTextFillColor:
+                  words[index] === "GOPIS" ? "#E11D5C" : "transparent",
                 backgroundClip: "text",
               }}
             >
@@ -89,29 +96,14 @@ export default function Hero() {
 
       {/* 3. Bottom Services Ticker */}
       <div className="absolute bottom-0 w-full bg-zinc-950/50 backdrop-blur-sm border-t border-zinc-900 py-8 overflow-hidden">
-        {/* The "Track" - Must be flex and max-content */}
         <div className="flex w-max animate-infinite-scroll">
-          {/* First Set of Items */}
           <div className="flex items-center gap-16 px-8">
             <ServiceItem text="Custom Design" />
             <ServiceItem text="Black & Gray" />
             <ServiceItem text="Minimalist" />
             <ServiceItem text="Realism" />
           </div>
-
-          {/* Exact Duplicate - This is what creates the loop */}
-          <div className="flex items-center gap-16 px-8">
-            <ServiceItem text="Custom Design" />
-            <ServiceItem text="Black & Gray" />
-            <ServiceItem text="Minimalist" />
-            <ServiceItem text="Realism" />
-          </div>
-          <div className="flex items-center gap-16 px-8">
-            <ServiceItem text="Custom Design" />
-            <ServiceItem text="Black & Gray" />
-            <ServiceItem text="Minimalist" />
-            <ServiceItem text="Realism" />
-          </div>
+          {/* Duplicate sets for infinite loop */}
           <div className="flex items-center gap-16 px-8">
             <ServiceItem text="Custom Design" />
             <ServiceItem text="Black & Gray" />

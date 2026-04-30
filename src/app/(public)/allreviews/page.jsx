@@ -37,15 +37,11 @@ const AllReviewsPage = () => {
     <div className="p-6 space-y-4">
       {reviews.map((rev) => (
         <div key={rev._id} className="border p-4 rounded">
-
           <h2 className="font-bold">{rev.name}</h2>
 
-          <p className="text-sm text-gray-600">
-            {rev.message}
-          </p>
+          <p className="text-sm text-gray-600">{rev.message}</p>
 
           <p>⭐ {rev.rating}</p>
-
         </div>
       ))}
     </div>

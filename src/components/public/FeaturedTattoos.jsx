@@ -53,13 +53,20 @@ export default function FeaturedTattoos() {
       </div>
 
       {/* FINAL CTA */}
-      <div className="flex justify-center mt-32">
+      <div className="flex gap-3 justify-center mt-32">
         <Link
           href="https://wa.me/8801641651210?text=Hello%20there!"
           target="_blank"
           className="group relative px-12 py-5 bg-[#E11D5C] text-white font-black uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(225,29,92,0.3)]"
         >
           <span className="relative z-10">Appoint Now</span>
+          <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+        </Link>
+        <Link
+          href="/works"
+          className="group relative px-12 py-5 bg-[#000000] text-white font-black uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
+        >
+          <span className="relative z-10">Explore More</span>
           <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
         </Link>
       </div>

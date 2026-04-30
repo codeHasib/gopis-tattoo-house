@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 w-full bg-black backdrop-blur-xl py-4 md:py-6 border-b border-zinc-900/50 z-90">
+      <nav className="sticky top-0 left-0 w-full bg-black backdrop-blur-xl py-4 md:py-6 border-b border-zinc-900/50 z-90">
         <div className="container mx-auto px-6 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] md:gap-6">
           {/* --- MOBILE LOGO / DESKTOP HIDDEN --- */}
           <Link href="/" className="flex items-center gap-2 lg:hidden">

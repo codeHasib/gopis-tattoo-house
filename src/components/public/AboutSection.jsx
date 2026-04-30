@@ -113,7 +113,7 @@ export default function AboutSection() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Link
-                href="/about"
+                href="/founder"
                 className="group flex items-center gap-4 text-black font-black uppercase tracking-widest text-sm"
               >
                 <span className="relative overflow-hidden inline-block">

@@ -10,7 +10,7 @@ import ReviewSection from "@/components/public/ReviewSection";
 
 const PublicHomePage = () => {
   return (
-    <div className="mt-24">
+    <div>
       <Hero></Hero>
       <AboutSection></AboutSection>
       <FeaturedTattoos></FeaturedTattoos>

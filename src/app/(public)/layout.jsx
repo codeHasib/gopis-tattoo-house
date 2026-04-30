@@ -21,9 +21,7 @@ export default function PublicLayout({ children }) {
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         )}
       </AnimatePresence>
-      <div className="mb-25">
-        <Navbar></Navbar>
-      </div>
+      <Navbar></Navbar>
       <main className={isLoading ? "hidden" : "block"}>{children}</main>
       <WhatsAppFAB></WhatsAppFAB>
     </div>

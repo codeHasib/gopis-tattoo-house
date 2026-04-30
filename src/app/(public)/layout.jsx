@@ -20,10 +20,10 @@ export default function PublicLayout({ children }) {
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         )}
       </AnimatePresence>
-      <main className={isLoading ? "hidden" : "block"}>
+      <div className="mb-25">
         <Navbar></Navbar>
-        {children}
-      </main>
+      </div>
+      <main className={isLoading ? "hidden" : "block"}>{children}</main>
     </div>
   );
 }

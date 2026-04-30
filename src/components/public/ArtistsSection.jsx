@@ -4,28 +4,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function ArtistsCarousel() {
+export default function ArtistsSection() {
   const [artists, setArtists] = useState([]);
 
-  // useEffect(() => {
-  //   async function loadArtist() {
-  //     const res = await fetch(`${process.env.BASE_URI}/api/artist`, {
-  //       cache: "no-store",
-  //     });
+  useEffect(() => {
+    async function loadArtist() {
+      try {
+        const res = await fetch("/api/artist", {
+          cache: "no-store",
+        });
+        const contentType = res.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          const text = await res.text();
+          console.error(
+            "Received HTML instead of JSON. Look at this output to see what page it is:",
+            text.substring(0, 200),
+          );
+          return;
+        }
 
-  //     const data = await res.json();
-  //     const allArtists = data?.data || [];
+        const data = await res.json();
+        const allData = data?.data.slice(0, 6);
+        setArtists(allData);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    }
 
-  //     // Logic: Show 5 artists for a balanced horizontal layout
-  //     // const newArtists = allArtists.slice(0, 5);
-
-  //     setArtists(allArtists);
-  //   }
-
-  //   loadArtist();
-  // }, []);
-
-  // console.log(artists);
+    loadArtist();
+  }, [artists]);
 
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -110,7 +117,7 @@ export default function ArtistsCarousel() {
                 fill
                 priority
                 sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 33vw"
-                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                className="object-cover group-hover:scale-105 transition-all duration-1000"
               />
 
               {/* GRADIENT OVERLAY (Required for readability) */}

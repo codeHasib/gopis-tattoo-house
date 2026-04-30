@@ -1,15 +1,26 @@
-import "../globals.css";
+"use client";
 
-export const metadata = {
-  title: "Gopis Tattoo House | Custom Art & Professional Studio in Chittagong",
-  description:
-    "Top-rated tattoo studio in Chittagong. Specializing in custom designs, fine-line, and realism. Book your free consultation with our expert artists today!",
-};
+import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import SplashScreen from "@/components/public/SplashScreen";
 
-export default function RootLayout({ children }) {
+export default function PublicLayout({ children }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // This ensures the splash runs on every browser refresh
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
+
   return (
-    <>
-      <section>{children}</section>
-    </>
+    <div className="bg-white text-black min-h-screen selection:bg-black selection:text-white">
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <SplashScreen finishLoading={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
+      <main className={isLoading ? "hidden" : "block"}>{children}</main>
+    </div>
   );
 }

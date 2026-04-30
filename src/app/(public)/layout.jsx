@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import SplashScreen from "@/components/public/SplashScreen";
+import Navbar from "@/components/public/Navbar";
 
 export default function PublicLayout({ children }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,8 +20,10 @@ export default function PublicLayout({ children }) {
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         )}
       </AnimatePresence>
-
-      <main className={isLoading ? "hidden" : "block"}>{children}</main>
+      <main className={isLoading ? "hidden" : "block"}>
+        <Navbar></Navbar>
+        {children}
+      </main>
     </div>
   );
 }

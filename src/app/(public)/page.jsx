@@ -1,5 +1,5 @@
 const PublicHomePage = () => {
-  return <div>This is public homepage</div>;
+  return <div className="mt-26"></div>;
 };
 
 export default PublicHomePage;

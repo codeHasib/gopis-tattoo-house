@@ -124,7 +124,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[100] bg-black p-8 md:hidden flex flex-col"
+            className="fixed inset-0 z-[100] bg-black p-8 lg:hidden flex flex-col min-h-screen"
           >
             <div className="flex justify-between items-center mb-12 border-b border-zinc-900 pb-6">
               <div className="flex items-center gap-3 flex-col">
@@ -148,7 +148,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4">
               {allLinks.map((link, i) => (
                 <motion.div
                   initial={{ x: -20, opacity: 0 }}
@@ -158,7 +158,7 @@ export default function Navbar() {
                 >
                   <Link href={link.href} onClick={() => setIsMobileOpen(false)}>
                     <span
-                      className={`text-5xl font-extrabold uppercase italic tracking-tighter ${pathname === link.href ? "text-[#E11D5C]" : "text-zinc-500"}`}
+                      className={`text-3xl font-extrabold uppercase italic tracking-tighter ${pathname === link.href ? "text-[#E11D5C]" : "text-zinc-500"}`}
                     >
                       {link.name}
                     </span>

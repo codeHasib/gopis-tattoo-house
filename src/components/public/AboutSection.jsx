@@ -22,7 +22,7 @@ export default function AboutSection() {
             {/* Decorative Pink Border Accent */}
             <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-[#E11D5C] z-0" />
 
-            <div className="relative z-10 aspect-[4/5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
+            <div className="relative z-10 aspect-[4/5] overflow-hidden transition-all duration-700 shadow-2xl">
               <Image
                 src={MyselfImg} // Replace with your friend's image path
                 alt="Lead Artist Portrait"

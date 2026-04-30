@@ -1,4 +1,6 @@
 import AboutSection from "@/components/public/AboutSection";
+import ArtistsSection from "@/components/public/ArtistsSection";
+import BlogSection from "@/components/public/BlogSection";
 import FeaturedTattoos from "@/components/public/FeaturedTattoos";
 import Hero from "@/components/public/Hero";
 import ReviewSection from "@/components/public/ReviewSection";
@@ -10,6 +12,8 @@ const PublicHomePage = () => {
       <AboutSection></AboutSection>
       <FeaturedTattoos></FeaturedTattoos>
       <ReviewSection></ReviewSection>
+      <BlogSection></BlogSection>
+      <ArtistsSection></ArtistsSection>
     </div>
   );
 };

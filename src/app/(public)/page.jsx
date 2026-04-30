@@ -1,5 +1,11 @@
+import Hero from "@/components/public/Hero";
+
 const PublicHomePage = () => {
-  return <div className="mt-26"></div>;
+  return (
+    <div>
+      <Hero></Hero>
+    </div>
+  );
 };
 
 export default PublicHomePage;

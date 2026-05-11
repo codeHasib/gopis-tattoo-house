@@ -52,7 +52,7 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-black uppercase font-serif text-[20px] tracking-wide text-white block">
+            <span className="font-black uppercase font-serif text-[20px] tracking-wide text-yellow-400">
               {" "}
               Gopis Tattoo Studio
             </span>

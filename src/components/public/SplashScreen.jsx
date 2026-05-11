@@ -99,7 +99,7 @@ export default function SplashScreen({ finishLoading }) {
                 isExpanding ? "text-black" : "text-white"
               }`}
             >
-              <span className="text-[#E11D5C]">Gopis</span>
+              <span className="text-yellow-400">Gopis</span>
               Tattoo
             </motion.h1>
           </div>

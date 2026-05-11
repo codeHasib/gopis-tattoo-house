@@ -9,6 +9,7 @@ import {
   Zap,
   ShieldCheck,
   Calendar,
+  MessageCircleMore,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -17,6 +18,8 @@ import DipPortrait from "../../../public/images/myself.jpg"; // Add his personal
 import WorkImg1 from "../../../public/images/portTatto1.jpg";
 import WorkImg2 from "../../../public/images/portTatto2.jpg";
 import WorkImg3 from "../../../public/images/portTatto3.jpg";
+import WorkImg4 from "../../../public/images/portTatto4.jpg";
+import WorkImg5 from "../../../public/images/portTatto5.jpg";
 
 // --- CUSTOM BRAND ICONS ---
 const InstagramIcon = ({ size = 24, strokeWidth = 2, className = "" }) => (
@@ -38,37 +41,48 @@ const InstagramIcon = ({ size = 24, strokeWidth = 2, className = "" }) => (
 );
 
 const artistData = {
-  name: "DIP DASH",
+  name: "DIP DAS",
   alias: "DIP_INK",
   experience: "7+ Years",
   specialty: "Black & Grey / Realism",
-  bio: "Mastering the balance between shadow and skin. Focused on custom large-scale realism and intricate fine-line work that ages as a legacy.",
+  bio: "I started my journey in the world of fashion as a model, where I learned the importance of style, aesthetics, and self-expression. Being on the runway shaped my eye for detail, but I always felt drawn toward a deeper form of art. That passion eventually led me to tattooing. I decided to step away from modeling and train internationally to learn professional tattoo techniques and explore global art styles. Now, I’m building my path as a tattoo artist — combining my fashion background with creative precision to design tattoos that reflect identity, emotion, and individuality. For me, tattooing is more than art — it’s storytelling on skin, where every piece carries meaning and transformation.",
   skills: [
-    { name: "Portrait Realism", icon: <Info size={14} /> },
+    { name: "Tattoo remove", icon: <Info size={14} /> },
     { name: "Custom Stencil Design", icon: <Zap size={14} /> },
     { name: "Cover-up Specialist", icon: <ShieldCheck size={14} /> },
+    { name: "Piercing", icon: <ShieldCheck size={14} /> },
+    { name: "Any kind of tattoo", icon: <ShieldCheck size={14} /> },
   ],
   gallery: [
     {
       id: 1,
-      title: "The Lion’s Pride",
-      type: "Full Sleeve",
+      title: "Mom & Child Tattoo",
+      type: "Fine Line Tattoo",
       image: WorkImg1,
-      hours: "12 Hours",
     },
     {
       id: 2,
-      title: "Geometric Soul",
-      type: "Back Piece",
+      title: "Shiva armband tattoo",
+      type: "Cover-up Tattoo By Customize Design",
       image: WorkImg2,
-      hours: "8 Hours",
     },
     {
       id: 3,
-      title: "Floral Anatomy",
-      type: "Forearm",
+      title: "Little Krishna Tattoo",
+      type: "mini realism tattoo",
       image: WorkImg3,
-      hours: "5 Hours",
+    },
+    {
+      id: 4,
+      title: "Zeus Tattoo",
+      type: "Black And Gray Tattoo",
+      image: WorkImg4,
+    },
+    {
+      id: 5,
+      title: "Stencil",
+      type: "",
+      image: WorkImg5,
     },
   ],
   booking: {
@@ -92,10 +106,9 @@ export default function ArtistPortfolio() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-[2px] w-12 bg-[#E11D5C]" />
-              <span className="text-[#E11D5C] font-black uppercase tracking-[0.5em] text-xs">
-                Resident Artist
+            <div className="flex items-center gap-4 mb-6 justify-center">
+              <span className="text-yellow-400 font-black uppercase tracking-[0.5em] text-xs">
+                FASHION MODEL
               </span>
             </div>
             <h1 className="text-7xl md:text-[8vw] font-black uppercase tracking-tighter leading-[0.8] mb-6">
@@ -124,7 +137,7 @@ export default function ArtistPortfolio() {
         <div className="relative h-[60vh] lg:h-screen order-1 lg:order-2">
           <Image
             src={DipPortrait}
-            alt="Dip Dash Portrait"
+            alt="Dip Das Portrait"
             fill
             className="object-cover transition-all duration-1000"
             priority
@@ -155,9 +168,6 @@ export default function ArtistPortfolio() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-md px-4 py-2 border border-zinc-800 text-[10px] font-black text-[#E11D5C]">
-                  {item.hours}
-                </div>
               </div>
               <div className="p-6">
                 <p className="text-[10px] font-black uppercase tracking-widest text-[#E11D5C] mb-1">
@@ -241,7 +251,7 @@ export default function ArtistPortfolio() {
           className="relative z-10"
         >
           <h2 className="text-7xl md:text-[15vw] font-black uppercase tracking-tighter leading-none mb-12">
-            Get <br /> Marked.
+            Get <br /> inked.
           </h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <a
@@ -259,7 +269,7 @@ export default function ArtistPortfolio() {
           </div>
         </motion.div>
         <div className="absolute top-1/4 left-10 opacity-5">
-          <InstagramIcon size={200} strokeWidth={1} />
+          <MessageCircleMore size={350} />
         </div>
       </section>
 

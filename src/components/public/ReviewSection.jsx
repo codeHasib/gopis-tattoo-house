@@ -42,11 +42,7 @@ export default function ReviewSection() {
         <motion.div
           style={{ x: xTransform }}
           className="absolute top-1/2 -translate-y-1/2 left-0 whitespace-nowrap opacity-[0.03] pointer-events-none select-none"
-        >
-          <span className="text-[20rem] font-black uppercase tracking-tighter text-white">
-            Authentic Inked Authentic Inked
-          </span>
-        </motion.div>
+        ></motion.div>
       )}
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -59,8 +55,8 @@ export default function ReviewSection() {
               </span>
             </div>
             <h2 className="text-7xl md:text-9xl font-black uppercase tracking-tighter text-white leading-[0.8]">
-              The <br />{" "}
-              <span className="text-outline text-transparent">Bloodline</span>
+              OUR <br />{" "}
+              <span className="text-outline text-transparent">Reviews</span>
             </h2>
           </div>
           <div className="text-right">
@@ -86,11 +82,18 @@ export default function ReviewSection() {
               {mounted && (
                 <motion.div
                   animate={{ x: ["0%", "-50%"] }}
-                  transition={{ ease: "linear", duration: 40, repeat: Infinity }}
+                  transition={{
+                    ease: "linear",
+                    duration: 40,
+                    repeat: Infinity,
+                  }}
                   className="flex gap-6 whitespace-nowrap py-10"
                 >
                   {[...reviews, ...reviews].map((review, index) => (
-                    <ReviewCard key={`${review._id || index}-${index}`} review={review} />
+                    <ReviewCard
+                      key={`${review._id || index}-${index}`}
+                      review={review}
+                    />
                   ))}
                 </motion.div>
               )}

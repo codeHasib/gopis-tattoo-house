@@ -76,9 +76,17 @@ export default function ContactSection() {
       icon: <MessageCircle size={20} />,
       link: "https://wa.me/8801641651210",
     },
-    { name: "Facebook", icon: <FacebookIcon />, link: "https://www.facebook.com/Gopisfav55" },
+    {
+      name: "Facebook",
+      icon: <FacebookIcon />,
+      link: "https://www.facebook.com/Gopisfav55",
+    },
     { name: "TikTok", icon: <TikTokIcon />, link: "" },
-    { name: "Pinterest", icon: <PinterestIcon />, link: "https://in.pinterest.com/GopisFav1/" },
+    {
+      name: "Pinterest",
+      icon: <PinterestIcon />,
+      link: "https://in.pinterest.com/GopisFav1/",
+    },
     {
       name: "Gmail",
       icon: <Mail size={20} />,
@@ -168,11 +176,11 @@ export default function ContactSection() {
                     Location
                   </p>
                   <p className="text-zinc-400 font-medium text-lg leading-relaxed max-w-xs">
-                    Your Studio Address Street,
+                    14 No Ward Lalkhan Bazar,
                     <br />
-                    City, Zip Code,
+                    Mati Jharna,Chattogram 4000
                     <br />
-                    Country
+                    Bangladesh
                   </p>
                 </div>
 

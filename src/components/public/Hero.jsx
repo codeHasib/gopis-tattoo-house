@@ -55,14 +55,14 @@ export default function Hero() {
                 // Conditional Logic: If word is GOPIS, use flat color. Otherwise, use image clip.
                 backgroundImage:
                   words[index] === "GOPIS"
-                    ? "none"
+                    ? `url('https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&q=80&w=1000')`
                     : `url('https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&q=80&w=1000')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 WebkitBackgroundClip: "text",
                 // If GOPIS, use your hex color. Otherwise, keep it transparent for the clip.
                 WebkitTextFillColor:
-                  words[index] === "GOPIS" ? "#E11D5C" : "transparent",
+                  words[index] === "GOPIS" ? "transparent" : "transparent",
                 backgroundClip: "text",
               }}
             >
@@ -78,8 +78,9 @@ export default function Hero() {
           transition={{ delay: 0.4 }}
           className="max-w-xl text-gray-200 text-[13px] md:text-[15px] leading-relaxed mt-6 mb-10 font-normal tracking-wide uppercase"
         >
-          Where art meets skin. We specialize in custom ink, precision
-          blackwork, and high-end tattoo artistry designed to last a lifetime.
+          Ink your story with precision and style. Custom tattoos, colorful
+          designs, cover-ups, piercing, and laser tattoo removal — all in one
+          place. Book your session today.
         </motion.p>
 
         {/* Action Button */}
@@ -88,7 +89,7 @@ export default function Hero() {
           target="_blank"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="bg-[#E11D5C] text-white px-12 py-4 rounded-full font-bold uppercase tracking-widest text-[13px] transition-all hover:brightness-110 shadow-xl"
+          className="bg-yellow-400 text-black px-12 py-4 rounded-full font-bold uppercase tracking-widest text-[13px] transition-all hover:brightness-110 shadow-xl"
         >
           Connect Now
         </motion.a>
@@ -99,21 +100,21 @@ export default function Hero() {
         <div className="flex w-max animate-infinite-scroll">
           <div className="flex items-center gap-16 px-8">
             <ServiceItem text="Custom Design" />
-            <ServiceItem text="Black & Gray" />
-            <ServiceItem text="Minimalist" />
+            <ServiceItem text="Piercing" />
+            <ServiceItem text="Tattoo Remove" />
             <ServiceItem text="Realism" />
           </div>
           {/* Duplicate sets for infinite loop */}
           <div className="flex items-center gap-16 px-8">
             <ServiceItem text="Custom Design" />
-            <ServiceItem text="Black & Gray" />
-            <ServiceItem text="Minimalist" />
+            <ServiceItem text="Piercing" />
+            <ServiceItem text="Tattoo Remove" />
             <ServiceItem text="Realism" />
           </div>
           <div className="flex items-center gap-16 px-8">
             <ServiceItem text="Custom Design" />
-            <ServiceItem text="Black & Gray" />
-            <ServiceItem text="Minimalist" />
+            <ServiceItem text="Piercing" />
+            <ServiceItem text="Tattoo Remove" />
             <ServiceItem text="Realism" />
           </div>
         </div>

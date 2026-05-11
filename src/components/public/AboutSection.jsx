@@ -25,7 +25,7 @@ export default function AboutSection() {
 
             <div className="relative z-10 aspect-[4/5] overflow-hidden transition-all duration-700 shadow-2xl">
               <Image
-                src={MyselfImg} // Replace with your friend's image path
+                src={MyselfImg}
                 alt="Lead Artist Portrait"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -61,7 +61,7 @@ export default function AboutSection() {
               <span className="text-gray-700 ml-2 font-bold uppercase tracking-[0.4em] text-xs">
                 Founder of
               </span>
-              <span className="text-[#E11D5C] text-5xl md:text-7xl font-bold block">
+              <span className="text-yellow-400 text-5xl md:text-7xl font-bold block">
                 GOPIS
                 <br />
               </span>{" "}

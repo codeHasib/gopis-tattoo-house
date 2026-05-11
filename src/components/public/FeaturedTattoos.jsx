@@ -53,7 +53,7 @@ export default function FeaturedTattoos() {
       </div>
 
       {/* FINAL CTA */}
-      <div className="flex gap-3 justify-center mt-32">
+      <div className="flex flex-col px-4 md:flex-row gap-3 justify-center mt-32">
         <Link
           href="https://wa.me/8801641651210?text=Hello%20there!"
           target="_blank"

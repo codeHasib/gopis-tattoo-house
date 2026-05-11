@@ -66,7 +66,7 @@ export default function AdminLoginPage() {
 
         <div className="space-y-2 mb-10">
           <h2 className="text-center text-zinc-400 font-medium tracking-[0.2em] uppercase text-xs">
-            Gopis Tattoo House
+            Gopis Tattoo Studio
           </h2>
           <h1 className="text-3xl font-bold text-center text-white tracking-tight">
             Admin Access

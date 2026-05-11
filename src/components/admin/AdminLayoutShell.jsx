@@ -131,7 +131,7 @@ export default function AdminLayoutShell({ children }) {
               </div>
               <div className="text-center">
                 <h2 className="text-white font-black uppercase italic tracking-widest text-lg">Terminating Session</h2>
-                <p className="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mt-2 font-bold">Securely logging out of Gopis Tattoo House</p>
+                <p className="text-zinc-500 text-[10px] uppercase tracking-[0.3em] mt-2 font-bold">Securely logging out of Gopis Tattoo Studio</p>
               </div>
             </div>
           </motion.div>
@@ -153,7 +153,7 @@ export default function AdminLayoutShell({ children }) {
               animate={{ opacity: 1 }}
               className="ml-3 font-bold tracking-tighter text-lg overflow-hidden whitespace-nowrap"
             >
-              Gopis Tattoo House
+              Gopis Tattoo Studio
             </motion.span>
           )}
         </div>
@@ -180,7 +180,7 @@ export default function AdminLayoutShell({ children }) {
           <div className="w-8 h-8 bg-white rounded flex items-center justify-center overflow-hidden p-1">
              <Image src={Logo} width={20} height={20} alt="G" />
           </div>
-          <span className="font-bold tracking-tighter uppercase text-xs">Gopis Tattoo House</span>
+          <span className="font-bold tracking-tighter uppercase text-xs">Gopis Tattoo Studio</span>
         </div>
         <button
           onClick={() => setIsMobileOpen(!isMobileOpen)}

@@ -3,6 +3,7 @@
 
 * {
   font-family: var(--font-playfair), serif;
+  font-variant-numeric: lining-nums;
 }
 
 :root {
@@ -34,4 +35,8 @@ body {
   to {
     transform: translateX(-50%);
   }
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
 }

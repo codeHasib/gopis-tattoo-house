@@ -16,7 +16,6 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "Our Works", href: "/works" },
     { name: "ARTISTS", href: "/artists" },
-    { name: "Members", href: "/members" },
     { name: "Blogs", href: "/blogs" },
     { name: "Reviews", href: "/allreviews" },
   ];
@@ -52,9 +51,9 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-black uppercase font-serif text-[20px] tracking-wide text-yellow-400">
+            <span className="font-black uppercase font-serif text-[20px] tracking-wide text-white">
               {" "}
-              Gopis Tattoo Studio
+              <span className="text-yellow-400">Gopis</span> Tattoo Studio
             </span>
           </Link>
 

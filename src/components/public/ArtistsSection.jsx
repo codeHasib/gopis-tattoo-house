@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import BannerImg from "../../../public/images/banner.jpg";
+import BannerImg from "../../../public/images/artistBanner.jpg";
 
 export default function ArtistsSection() {
   // Static configuration for the high-impact featured image

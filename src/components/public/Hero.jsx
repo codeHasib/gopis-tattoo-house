@@ -36,7 +36,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-white font-bold uppercase tracking-[0.4em] text-lg md:text-xl mb-4"
-          style={{ fontVariantNumeric: "lining-nums" }} // This fixes the messy heights
+          style={{ fontVariantNumeric: "lining-nums" }}
         >
           EST. 2017
         </motion.span>

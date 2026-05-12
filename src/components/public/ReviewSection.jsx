@@ -110,12 +110,6 @@ export default function ReviewSection() {
           </p>
         )}
       </div>
-
-      <style jsx>{`
-        .text-outline {
-          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-        }
-      `}</style>
     </section>
   );
 }

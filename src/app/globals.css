@@ -40,3 +40,8 @@ body {
 .text-outline {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
 }
+
+.text-outline2 {
+  -webkit-text-stroke: 1px #18181b;
+  color: transparent;
+}

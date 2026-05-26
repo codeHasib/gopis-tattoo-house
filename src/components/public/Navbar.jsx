@@ -17,14 +17,14 @@ export default function Navbar() {
     { name: "Our Works", href: "/works" },
     { name: "ARTISTS", href: "/artists" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Reviews", href: "/allreviews" },
   ];
 
   const rightNav = [
+    { name: "Reviews", href: "/allreviews" },
     { name: "Founder", href: "/founder" },
     { name: "Locate  us", href: "/locate" },
     { name: "Contact  Us", href: "/contact" },
-    { name: "Courses", href: "/courses" },
+    // { name: "Courses", href: "/courses" },
   ];
 
   const allLinks = [...leftNav, ...rightNav];

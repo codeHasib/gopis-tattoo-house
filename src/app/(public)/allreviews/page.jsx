@@ -45,9 +45,9 @@ const AllReviewsPage = () => {
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5 }}
-          className="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none"
+          className="flex items-center justify-center opacity-10 pointer-events-none"
         >
-          <h1 className="text-[25vw] font-black leading-none text-white select-none">
+          <h1 className="text-5xl font-black leading-none text-white select-none">
             REVIEWS
           </h1>
         </motion.div>

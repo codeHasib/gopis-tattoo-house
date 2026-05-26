@@ -70,7 +70,11 @@ const PinterestIcon = () => (
 
 export default function ContactSection() {
   const socials = [
-    { name: "Instagram", icon: <InstagramIcon />, link: "#" },
+    {
+      name: "Instagram",
+      icon: <InstagramIcon />,
+      link: "https://instagram.com/gopistattoostudio?utm_source=qr&igsh=MWgxdGNscjZzYXRpdA==",
+    },
     {
       name: "WhatsApp",
       icon: <MessageCircle size={20} />,
@@ -213,21 +217,6 @@ export default function ContactSection() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* FOOTER-LIKE BRANDING */}
-      <div className="max-w-[1400px] mx-auto mt-24 pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-8">
-        <p className="text-zinc-600 text-[10px] font-bold uppercase tracking-[0.5em]">
-          © 2026 GOPIS TATTOO STUDIO
-        </p>
-        <div className="flex gap-8 opacity-20 hover:opacity-100 transition-opacity">
-          <span className="text-white font-black uppercase tracking-tighter text-4xl italic">
-            AUTHENTIC
-          </span>
-          <span className="text-white font-black uppercase tracking-tighter text-4xl italic">
-            INCORRUPTIBLE
-          </span>
         </div>
       </div>
     </section>

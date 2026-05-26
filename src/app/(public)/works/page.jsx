@@ -199,9 +199,6 @@ function MobileServiceSlider({ title, data, icon }) {
                     ৳{item.price}
                   </p>
                 </div>
-                <div className="flex-shrink-0 bg-zinc-900 p-3">
-                  <ArrowRight size={14} className="text-zinc-600" />
-                </div>
               </div>
             </div>
           ))

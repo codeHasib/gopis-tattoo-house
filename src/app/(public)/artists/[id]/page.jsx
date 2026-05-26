@@ -11,7 +11,6 @@ const ArtistDetails = async ({ params }) => {
   const artists = data?.data || [];
 
   const theArtist = artists.find((item) => item._id == id);
-  console.log(theArtist);
 
   return (
     <div>

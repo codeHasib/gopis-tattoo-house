@@ -25,7 +25,7 @@ const ArtistDetailsCompo = ({ theArtist }) => {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-[#E11D5C] overflow-x-hidden">
       {/* 1. TOP NAVIGATION - Increased backdrop-blur and z-index */}
-      <nav className="fixed top-0 left-0 w-full p-6 z-[100] backdrop-blur-md bg-black/20 lg:bg-transparent lg:mix-blend-difference">
+      <nav className="backdrop-blur-md bg-black/20 lg:bg-transparent lg:mix-blend-difference py-6 px-3">
         <Link
           href="/artists"
           className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors group"
@@ -54,7 +54,7 @@ const ArtistDetailsCompo = ({ theArtist }) => {
               alt={theArtist.name}
               fill
               priority
-              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="object-cover transition-all duration-700"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             {/* Darker gradient at bottom for mobile name readability */}

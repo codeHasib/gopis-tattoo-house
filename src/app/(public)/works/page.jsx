@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ChevronLeft,
@@ -16,6 +16,8 @@ import IndPie from "../../../../public/images/indPie.jpg";
 import HelixPie from "../../../../public/images/helixPie.jpg";
 import SmallRem from "../../../../public/images/smallRem.jpg";
 import LargeRem from "../../../../public/images/largeRem.jpg";
+
+export const dynamic = "force-dynamic";
 
 // --- STATIC DATA ---
 const staticCategories = [
@@ -67,7 +69,18 @@ const staticCategories = [
   },
 ];
 
-export default function TattooGalleryPage({ dynamicTattoos = [] }) {
+export default function TattooGalleryPage() {
+  const [dynamicTattoos, setDynamicTattoos] = useState([]);
+  useEffect(() => {
+    async function fetchDynamicTattoos() {
+      const res = await fetch("/api/tattoo", {
+        cache: "no-store",
+      });
+      const data = await res.json();
+      setDynamicTattoos(data?.data);
+    }
+    fetchDynamicTattoos();
+  }, []);
   return (
     <div className="min-h-screen bg-black text-white py-16 selection:bg-[#E11D5C]">
       {/* Header */}

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="readme.png" alt="Gopis Tattoo Studio" width="100%">
+</p>
+
 # 🖋️ Gopi’s Tattoo Studio — Business Website
 
 🔗 **Live:** https://gopistattoostudio.com

@@ -34,7 +34,7 @@ const TATTOOS = [
 
 export default function FeaturedTattoos() {
   return (
-    <section className="relative bg-white pb-32">
+    <section className="relative bg-white pb-10">
       {/* SECTION HEADER - Stays centered while cards pass */}
       <div className="h-[40vh] flex flex-col items-center justify-center text-center px-6">
         <span className="text-[#E11D5C] font-bold uppercase tracking-[0.4em] text-xs mb-4">
@@ -46,10 +46,27 @@ export default function FeaturedTattoos() {
       </div>
 
       {/* STACKING CARDS CONTAINER */}
-      <div className="relative max-w-5xl mx-auto px-6">
+      {/* <div className="relative max-w-5xl mx-auto px-6">
         {TATTOOS.map((tattoo, i) => {
           return <Card key={tattoo.id} {...tattoo} i={i} />;
         })}
+      </div> */}
+
+      <div className="px-4 container mx-auto">
+        <div className="rounded-4xl overflow-hidden">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/tattooposter.jpg"
+          >
+            <source src="/tattovid.webm" type="video/webm" />
+            <source src="/tattovid.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
 
       {/* FINAL CTA */}
